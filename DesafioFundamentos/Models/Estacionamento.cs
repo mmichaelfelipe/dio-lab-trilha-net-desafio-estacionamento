@@ -14,10 +14,17 @@ namespace DesafioFundamentos.Models
 
         public void AdicionarVeiculo()
         {
-            var veiculo = ObterValorTexto("Digite a placa do veículo para estacionar:");
-            veiculos.Add(veiculo);
-
-            Console.WriteLine($"Veículo {veiculo} adicionado com sucesso");
+            var placa = ObterValorTexto("Digite a placa do veículo para estacionar:");
+            
+            if (!veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
+            {
+                veiculos.Add(placa);
+                Console.WriteLine($"Veículo {placa} adicionado com sucesso");
+            }
+            else
+            {
+                Console.WriteLine($"Desculpe, não foi possível adicionar esse veículo. Motivo: já existe um veículo com a placa {placa} estacionado.");
+            }            
         }
 
         public void RemoverVeiculo()
